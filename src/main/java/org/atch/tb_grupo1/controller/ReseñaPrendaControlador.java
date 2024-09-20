@@ -1,7 +1,9 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.ReseñaPrendaDTO;
 import org.atch.tb_grupo1.entities.ReseñaPrenda;
 import org.atch.tb_grupo1.services.ReseñaPrendaService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,11 @@ public class ReseñaPrendaControlador {
     @Autowired
     ReseñaPrendaService service;
     @PostMapping("/reseña-prenda")
-    public ReseñaPrenda guardar(@RequestBody ReseñaPrenda obj) {
-        return service.guardar(obj);
+    public ReseñaPrendaDTO guardar(@RequestBody ReseñaPrendaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        ReseñaPrenda obj=modelMapper.map(objDTO, ReseñaPrenda.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, ReseñaPrendaDTO.class);
     }
 
     @GetMapping("/reseñas-prenda")
@@ -23,8 +28,11 @@ public class ReseñaPrendaControlador {
     }
 
     @PutMapping("/reseña-prenda")
-    public ReseñaPrenda actualizar(@RequestBody ReseñaPrenda obj) {
-        return service.actualizar(obj);
+    public ReseñaPrendaDTO actualizar(@RequestBody ReseñaPrendaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        ReseñaPrenda obj=modelMapper.map(objDTO, ReseñaPrenda.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, ReseñaPrendaDTO.class);
     }
 
     @DeleteMapping("/reseña-prenda/{id}")

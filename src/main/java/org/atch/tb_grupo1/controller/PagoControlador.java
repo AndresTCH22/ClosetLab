@@ -1,8 +1,10 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.PagoDTO;
 import org.atch.tb_grupo1.entities.Carrito;
 import org.atch.tb_grupo1.entities.Pago;
 import org.atch.tb_grupo1.services.PagoService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,11 @@ public class PagoControlador {
     @Autowired
     PagoService service;
     @PostMapping("/pago")
-    public Pago guardar(@RequestBody Pago obj) {
-        return service.guardar(obj);
+    public PagoDTO guardar(@RequestBody PagoDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Pago obj=modelMapper.map(objDTO, Pago.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, PagoDTO.class);
     }
 
     @GetMapping("/pago")
@@ -24,8 +29,11 @@ public class PagoControlador {
     }
 
     @PutMapping("/pago")
-    public Pago actualizar(@RequestBody Pago obj) {
-        return service.actualizar(obj);
+    public PagoDTO actualizar(@RequestBody PagoDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Pago obj=modelMapper.map(objDTO, Pago.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, PagoDTO.class);
     }
 
     @DeleteMapping("/pago/{id}")

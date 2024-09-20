@@ -1,8 +1,10 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.TallaDTO;
 import org.atch.tb_grupo1.entities.Prenda;
 import org.atch.tb_grupo1.entities.Talla;
 import org.atch.tb_grupo1.services.TallaService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,11 @@ public class TallaControlador {
     @Autowired
     TallaService service;
     @PostMapping("/talla")
-    public Talla guardar(@RequestBody Talla obj) {
-        return service.guardar(obj);
+    public TallaDTO guardar(@RequestBody TallaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Talla obj=modelMapper.map(objDTO, Talla.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, TallaDTO.class);
     }
 
     @GetMapping("/talla")
@@ -24,8 +29,11 @@ public class TallaControlador {
     }
 
     @PutMapping("/talla")
-    public Talla actualizar(@RequestBody Talla obj) {
-        return service.actualizar(obj);
+    public TallaDTO actualizar(@RequestBody TallaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Talla obj=modelMapper.map(objDTO, Talla.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, TallaDTO.class);
     }
 
     @DeleteMapping("/talla/{id}")

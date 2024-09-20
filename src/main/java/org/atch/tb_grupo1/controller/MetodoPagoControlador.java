@@ -1,8 +1,10 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.MetodoPagoDTO;
 import org.atch.tb_grupo1.entities.MetodoPago;
 import org.atch.tb_grupo1.repositories.MetodoPagoRepositorio;
 import org.atch.tb_grupo1.services.MetodoPagoService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,11 @@ public class MetodoPagoControlador {
     @Autowired
     MetodoPagoService service;
     @PostMapping("/metodo-pago")
-    public MetodoPago guardar(@RequestBody MetodoPago obj) {
-        return service.guardar(obj);
+    public MetodoPagoDTO guardar(@RequestBody MetodoPagoDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        MetodoPago obj=modelMapper.map(objDTO, MetodoPago.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, MetodoPagoDTO.class);
     }
 
     @GetMapping("/metodos-pago")
@@ -24,8 +29,11 @@ public class MetodoPagoControlador {
     }
 
     @PutMapping("/metodo-pago")
-    public MetodoPago actualizar(@RequestBody MetodoPago obj) {
-        return service.actualizar(obj);
+    public MetodoPagoDTO actualizar(@RequestBody MetodoPagoDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        MetodoPago obj=modelMapper.map(objDTO, MetodoPago.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, MetodoPagoDTO.class);
     }
 
     @DeleteMapping("/metodo-pago/{id}")

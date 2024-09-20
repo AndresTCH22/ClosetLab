@@ -1,7 +1,9 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.ReseñaProbadorVirtualDTO;
 import org.atch.tb_grupo1.entities.ReseñaProbadorVirtual;
 import org.atch.tb_grupo1.services.ReseñaProbadorVirtualService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,11 @@ public class ReseñaProbadorVirtualController {
     @Autowired
     ReseñaProbadorVirtualService service;
     @PostMapping("/reseña-probador-virtual")
-    public ReseñaProbadorVirtual guardar(@RequestBody ReseñaProbadorVirtual obj) {
-        return service.guardar(obj);
+    public ReseñaProbadorVirtualDTO guardar(@RequestBody ReseñaProbadorVirtualDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        ReseñaProbadorVirtual obj=modelMapper.map(objDTO, ReseñaProbadorVirtual.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, ReseñaProbadorVirtualDTO.class);
     }
 
     @GetMapping("/reseñas-probador-virtual")
@@ -23,8 +28,11 @@ public class ReseñaProbadorVirtualController {
     }
 
     @PutMapping("/reseña-probador-virtual")
-    public ReseñaProbadorVirtual actualizar(@RequestBody ReseñaProbadorVirtual obj) {
-        return service.actualizar(obj);
+    public ReseñaProbadorVirtualDTO actualizar(@RequestBody ReseñaProbadorVirtualDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        ReseñaProbadorVirtual obj=modelMapper.map(objDTO, ReseñaProbadorVirtual.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, ReseñaProbadorVirtualDTO.class);
     }
 
     @DeleteMapping("/reseña-probador-virtual/{id}")

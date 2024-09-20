@@ -1,7 +1,9 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.TipoPrendaDTO;
 import org.atch.tb_grupo1.entities.TipoPrenda;
 import org.atch.tb_grupo1.services.TipoPrendaService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,11 @@ public class TipoPrendaControlador {
     @Autowired
     TipoPrendaService service;
     @PostMapping("/tipo-prenda")
-    public TipoPrenda guardar(@RequestBody TipoPrenda obj) {
-        return  service.guardar(obj);
+    public TipoPrendaDTO guardar(@RequestBody TipoPrendaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        TipoPrenda obj=modelMapper.map(objDTO, TipoPrenda.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, TipoPrendaDTO.class);
     }
 
     @GetMapping("/tipos-prenda")
@@ -23,8 +28,11 @@ public class TipoPrendaControlador {
     }
 
     @PutMapping("/tipo-prenda")
-    public TipoPrenda actualizar(@RequestBody TipoPrenda obj) {
-        return service.actualizar(obj);
+    public TipoPrendaDTO actualizar(@RequestBody TipoPrendaDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        TipoPrenda obj=modelMapper.map(objDTO, TipoPrenda.class);
+        obj=service.actualizar(obj);
+        return modelMapper.map(obj, TipoPrendaDTO.class);
     }
 
     @DeleteMapping("/tipo-prenda")

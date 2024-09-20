@@ -1,8 +1,10 @@
 package org.atch.tb_grupo1.controller;
 
+import org.atch.tb_grupo1.dto.UsuarioDTO;
 import org.atch.tb_grupo1.entities.TipoUsuario;
 import org.atch.tb_grupo1.entities.Usuario;
 import org.atch.tb_grupo1.services.UsuarioService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +17,28 @@ public class UsuarioControlador {
     UsuarioService service;
 
     @PostMapping("/usuario")
-    public Usuario GuardarTipoUsuario(@RequestBody Usuario usuario) {
-        return service.guardar(usuario);
+    public UsuarioDTO guardar(@RequestBody UsuarioDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Usuario obj=modelMapper.map(objDTO, Usuario.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, UsuarioDTO.class);
     }
 
     @GetMapping("usuarios")
-    public List<Usuario> BuscarTipoUsuario() {
+    public List<Usuario> listar() {
         return service.listar();
     }
 
     @PutMapping("/usuario")
-    public Usuario ActualizarTipoUsuario(@RequestBody Usuario usuario) {
-         return  service.actualizar(usuario);
+    public UsuarioDTO actualizar(@RequestBody UsuarioDTO objDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Usuario obj=modelMapper.map(objDTO, Usuario.class);
+        obj=service.guardar(obj);
+        return modelMapper.map(obj, UsuarioDTO.class);
     }
 
     @DeleteMapping("/usuario/{id}")
-    public void eliminarTipoUsuario(@PathVariable int  id) {
+    public void eliminar(@PathVariable int  id) {
         service.eliminar(id);
     }
 }
