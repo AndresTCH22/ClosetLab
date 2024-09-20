@@ -23,7 +23,7 @@ public class TallaControlador {
         return modelMapper.map(obj, TallaDTO.class);
     }
 
-    @GetMapping("/talla")
+    @GetMapping("/tallas")
     public List<Talla> listar() {
         return service.listar();
     }

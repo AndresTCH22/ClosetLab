@@ -36,7 +36,7 @@ public class MetodoPagoControlador {
         return modelMapper.map(obj, MetodoPagoDTO.class);
     }
 
-    @DeleteMapping("/metodo-pago/{id}")
+    @DeleteMapping("/metodo-pago/{id}" )
     public void eliminar(@PathVariable int id) {
         service.eliminar(id);
     }

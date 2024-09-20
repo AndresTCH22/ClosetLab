@@ -35,8 +35,8 @@ public class TipoPrendaControlador {
         return modelMapper.map(obj, TipoPrendaDTO.class);
     }
 
-    @DeleteMapping("/tipo-prenda")
-    public void eliminar(@RequestBody int id) {
+    @DeleteMapping("/tipo-prenda/{id}")
+    public void eliminar(@PathVariable int id) {
         service.eliminar(id);
     }
 }

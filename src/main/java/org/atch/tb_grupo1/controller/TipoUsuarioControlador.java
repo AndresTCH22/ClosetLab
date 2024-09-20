@@ -37,7 +37,7 @@ public class TipoUsuarioControlador {
     }
 
     @DeleteMapping("/tipo-usuario/{id}")
-    public void eliminar(@RequestBody int id) {
+    public void eliminar(@PathVariable int id) {
         service.eliminar(id);
     }
 }

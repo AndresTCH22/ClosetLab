@@ -23,7 +23,7 @@ public class CategoriaControlador {
         return modelMapper.map(obj, CategoriaDTO.class);
     }
 
-    @GetMapping("/categoria")
+    @GetMapping("/categorias")
     public List<Categoria> listar() {
         return service.listar();
     }

@@ -22,7 +22,7 @@ public class CarritoControlador {
         return modelMapper.map(obj, CarritoDTO.class);
     }
 
-    @GetMapping("/carrito")
+    @GetMapping("/carritos")
     public List<Carrito> listar() {
         return service.listar();
     }

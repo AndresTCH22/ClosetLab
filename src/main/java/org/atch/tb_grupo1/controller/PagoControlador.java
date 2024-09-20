@@ -23,7 +23,7 @@ public class PagoControlador {
         return modelMapper.map(obj, PagoDTO.class);
     }
 
-    @GetMapping("/pago")
+    @GetMapping("/pagos")
     public List<Pago> listar() {
         return service.listar();
     }

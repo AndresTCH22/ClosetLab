@@ -24,7 +24,7 @@ public class EstadoCarritoControlador {
         return modelMapper.map(obj, EstadoCarritoDTO.class);
     }
 
-    @GetMapping("/estado-carrito")
+    @GetMapping("/estados-carrito")
     public List<EstadoCarrito> listar() {
         return service.listar();
     }

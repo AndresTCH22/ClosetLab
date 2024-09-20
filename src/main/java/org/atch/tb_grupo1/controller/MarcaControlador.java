@@ -24,7 +24,7 @@ public class MarcaControlador {
         return modelMapper.map(obj, MarcaDTO.class);
     }
 
-    @GetMapping("/marca")
+    @GetMapping("/marcas")
     public List<Marca> listar() {
         return service.listar();
     }
@@ -38,7 +38,7 @@ public class MarcaControlador {
     }
 
     @DeleteMapping("/marca/{id}")
-    public void eliminar(@RequestBody int id) {
+    public void eliminar(@PathVariable int id) {
         service.eliminar(id);
     }
 }

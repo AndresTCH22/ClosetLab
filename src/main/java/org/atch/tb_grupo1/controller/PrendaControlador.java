@@ -23,7 +23,7 @@ public class PrendaControlador {
         return modelMapper.map(obj, PrendaDTO.class);
     }
 
-    @GetMapping("/prenda")
+    @GetMapping("/prendas")
     public List<Prenda> listar() {
         return service.listar();
     }
