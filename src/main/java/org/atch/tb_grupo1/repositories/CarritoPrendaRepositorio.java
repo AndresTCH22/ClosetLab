@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface CarritoPrendaRepositorio extends JpaRepository<CarritoPrenda, Integer> {
+public interface CarritoPrendaRepositorio  {
 }
