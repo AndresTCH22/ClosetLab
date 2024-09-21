@@ -13,18 +13,6 @@ import lombok.Setter;
 @Entity
 public class CarritoPrenda {
     @EmbeddedId
-    private CarritoPrendaId id;
-
-    @MapsId("carritoId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "carrito_id", nullable = false)
-    private Carrito carrito;
-
-    @MapsId("prendaId")
-    @ManyToOne()
-    @JoinColumn(name = "prenda_id")
-    private Prenda prenda;
-
-    private int cantidad;
+    private CarritoPrendaIdss id;
 
 }

@@ -16,7 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class CarritoPrendaId implements Serializable {
+public class CarritoPrendaIdss implements Serializable {
     private static final long serialVersionUID = 5182719147527660272L;
     @Column(name = "carrito_id", nullable = false)
     private Integer carritoId;
@@ -28,7 +28,7 @@ public class CarritoPrendaId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CarritoPrendaId entity = (CarritoPrendaId) o;
+        CarritoPrendaIdss entity = (CarritoPrendaIdss) o;
         return Objects.equals(this.prendaId, entity.prendaId) &&
                 Objects.equals(this.carritoId, entity.carritoId);
     }
